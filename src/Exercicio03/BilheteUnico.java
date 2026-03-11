@@ -12,24 +12,30 @@ public class BilheteUnico {
     final static double tarifa = 5.50;
 
 
+    public BilheteUnico(String usuario, String tipoTarifa) {
 
-    public BilheteUnico(String usuario, String tipoTarifa){
-
-    this.numero = rd.nextInt(1000, 9999);
-    this.usuario = usuario;
-    this.tipoTarifa = tipoTarifa;
-    this.saldo = 0;
+        this.numero = rd.nextInt(1000, 9999);
+        this.usuario = usuario;
+        this.tipoTarifa = tipoTarifa;
+        this.saldo = 0;
 
     }
 
-    public void passarNaCatraca(){
+    public void Carregar(double valor) {
+        this.saldo += valor;
+    }
+
+    public boolean PassarNaCatraca() {
         double valor = tarifa;
         if (tipoTarifa.equalsIgnoreCase("professor") ||
-                tipoTarifa.equalsIgnoreCase("estudante")){
-            valor = tarifa/2;
+                tipoTarifa.equalsIgnoreCase("estudante")) {
+            valor = tarifa / 2;
         }
-        if (saldo < valor){
-            return;
+        if (saldo < valor) {
+            return false;
         }
         saldo -= valor;
+            return true;
+
     }
+}
